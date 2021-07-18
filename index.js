@@ -19,6 +19,7 @@ mongoose.connection.once('open', () => {
     console.log('MongoDB connection established')
 })
 
+const hostname = '0.0.0.0';
 const PORT = 5000;
 
 app.use(cors());
@@ -35,16 +36,17 @@ app.get('/users', (req, res) => {
     })
 })
 
-app.post('/create-user', (req, res) => {
+app.post('/createuser', (req, res) => {
     const user = new User(req.body)
     user.save().then((user) => {
         res.json(user)
+        console.log(req.body)
     }).catch((err) => {
         res.status(500).send(err.message)
     })
 })
 
-app.get('user:id', (req, res) => {
+app.put('user:id', (req, res) => {
     const id = req.params.id;
     User.findById(id, (err, user) => {
         res.json(user)
