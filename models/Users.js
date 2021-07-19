@@ -9,10 +9,9 @@ const User = mongoose.Schema({
     },
     igc: {
         type: String
-    },
-    _id: {
-        type: String
     }
+},{
+    collection: "users"
 })
 
 module.exports = mongoose.model('User', User);
